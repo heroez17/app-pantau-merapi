@@ -1,0 +1,17 @@
+<resources>
+    <string name="mapbox_key">pk.eyJ1IjoiZHVuaWFkYW51IiwiYSI6Ii02R2M3ekUifQ.Gr5zpPA2nEHYeqqSz1yRQw</string>
+    <string name="app_name_pantau">Pantau Merapi</string>
+    <string name="pantau_merapi">PANTAU MERAPI</string>
+    <string name="info_radius_berbahaya">Info Radius Berbahaya</string>
+    <string name="menu_lain">Menu Lain</string>
+    <string name="lokasi_anda">Lokasi Anda</string>
+    <string name="pos_pengamatan">Pos Pengamatan</string>
+    <string name="pos_pengungsi">Pos Pengungsi</string>
+    <string name="media_center">Media Center</string>
+    <string name="zona_krb">Zona KRB</string>
+    <string name="aktivitas_merapi">Aktivitas Merapi</string>
+    <string name="info_lokasi">Info Lokasi</string>
+    <string name="jarak_dari_puncak">Jarak dari puncak</string>
+    <string name="lokasi_pos_pengamatan">Lokasi Pos Pengamatan</string>
+    <string name="lokasi_pos_pengungsi">Lokasi Pos Pengungsi</string>
+</resources>
