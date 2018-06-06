@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mapbox.mapboxsdk.Mapbox;
@@ -36,6 +38,7 @@ public class LokasiAnda extends AppCompatActivity {
     private Marker marker;
     private MapboxMap map;
     private TextView jarak,koordinat;
+    private Boolean stat_style=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +52,33 @@ public class LokasiAnda extends AppCompatActivity {
 
         koordinat=findViewById(R.id.textView16);
         jarak=findViewById(R.id.textView15);
+
+        final ImageView btn_style=findViewById(R.id.btn_style);
+        btn_style.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (stat_style){
+                    stat_style=false;
+                    map.setStyle(Style.SATELLITE_STREETS);
+                    btn_style.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            btn_style.setImageResource(R.drawable.ic_street_icon);
+                        }
+                    });
+                }else{
+                    stat_style=true;
+                    map.setStyle(Style.MAPBOX_STREETS);
+                    btn_style.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            btn_style.setImageResource(R.drawable.ic_satelit_icon);
+                        }
+                    });
+                }
+            }
+        });
+
         mapView = findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
 
@@ -61,14 +91,6 @@ public class LokasiAnda extends AppCompatActivity {
                 mapboxMap.addMarker(new MarkerOptions().position(new LatLng(-7.541292151475886,110.44619982622703)).setTitle("Puncak Merapi").icon(icon));
                 startService(new Intent(LokasiAnda.this,FusedLocationServices.class));
                 // Customize map with markers, polylines, etc.
-
-
-                mapboxMap.addOnMapClickListener(new MapboxMap.OnMapClickListener() {
-                    @Override
-                    public void onMapClick(@NonNull LatLng point) {
-                        System.out.println(point);
-                    }
-                });
             }
         });
     }

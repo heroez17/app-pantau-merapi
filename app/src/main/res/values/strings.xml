@@ -14,4 +14,10 @@
     <string name="jarak_dari_puncak">Jarak dari puncak</string>
     <string name="lokasi_pos_pengamatan">Lokasi Pos Pengamatan</string>
     <string name="lokasi_pos_pengungsi">Lokasi Pos Pengungsi</string>
+    <string name="info_zona">Info Zona</string>
+    <string name="spasi">-</string>
+    <string name="http_www_merapi_bgl_esdm_go_id">http://www.merapi.bgl.esdm.go.id/</string>
+    <string name="https_twitter_com_bpptkg">https://twitter.com/bpptkg</string>
+    <string name="bpptkg">\@BPPTKG</string>
+    <string name="merapi_bgl_esdm_go_id">merapi.bgl.esdm.go.id</string>
 </resources>

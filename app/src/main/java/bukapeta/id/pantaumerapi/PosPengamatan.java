@@ -6,10 +6,13 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
 import android.location.Location;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.annotations.Icon;
@@ -35,6 +38,7 @@ public class PosPengamatan extends AppCompatActivity {
     private Marker marker;
     private MapboxMap map;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,8 +50,32 @@ public class PosPengamatan extends AppCompatActivity {
         final Icon icon = iconFactory.fromResource(R.drawable.fire);
         final Icon iconpos = iconFactory.fromResource(R.drawable.placeholder);
 
-
-
+        final Boolean[] stat_style = {false};
+        final ImageView btn_style=findViewById(R.id.btn_style);
+        btn_style.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (stat_style[0]){
+                    stat_style[0] =false;
+                    map.setStyle(Style.SATELLITE_STREETS);
+                    btn_style.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            btn_style.setImageResource(R.drawable.ic_street_icon);
+                        }
+                    });
+                }else{
+                    stat_style[0] =true;
+                    map.setStyle(Style.MAPBOX_STREETS);
+                    btn_style.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            btn_style.setImageResource(R.drawable.ic_satelit_icon);
+                        }
+                    });
+                }
+            }
+        });
 
         mapView = findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
@@ -63,11 +91,23 @@ public class PosPengamatan extends AppCompatActivity {
                 startService(new Intent(PosPengamatan.this,FusedLocationServices.class));
                 // Customize map with markers, polylines, etc.
 
-                mapboxMap.addMarker(new MarkerOptions().position(new LatLng(-7.525941,110.410546)).setTitle("Pos Pengamatan Babadan").setIcon(iconpos));
-                mapboxMap.addMarker(new MarkerOptions().position(new LatLng(-7.497272,110.421646)).setTitle("Pos Pengamatan Jrakah").setIcon(iconpos));
-                mapboxMap.addMarker(new MarkerOptions().position(new LatLng(-7.601044,110.425081)).setTitle("Pos Pengamatan Kaliurang").setIcon(iconpos));
-                mapboxMap.addMarker(new MarkerOptions().position(new LatLng(-7.498934,110.457064)).setTitle("Pos Pengamatan Selo").setIcon(iconpos));
+                mapboxMap.addMarker(new MarkerOptions().position(new LatLng(-7.525941,110.410546)).setSnippet("Pos Pengamatan Babadan").setIcon(iconpos));
+                mapboxMap.addMarker(new MarkerOptions().position(new LatLng(-7.497272,110.421646)).setSnippet("Pos Pengamatan Jrakah").setIcon(iconpos));
+                mapboxMap.addMarker(new MarkerOptions().position(new LatLng(-7.601044,110.425081)).setSnippet("Pos Pengamatan Kaliurang").setIcon(iconpos));
+                mapboxMap.addMarker(new MarkerOptions().position(new LatLng(-7.498934,110.457064)).setSnippet("Pos Pengamatan Selo").setIcon(iconpos));
 
+                mapboxMap.setOnInfoWindowClickListener(new MapboxMap.OnInfoWindowClickListener() {
+                    @Override
+                    public boolean onInfoWindowClick(@NonNull Marker marker) {
+                        String uri = "http://maps.google.com/maps?daddr=" + marker.getPosition().getLatitude() + "," + marker.getPosition().getLongitude() + " (" + marker.getSnippet() + ")";
+
+//                        Uri gmmIntentUri = Uri.parse("google.navigation:q="+marker.getPosition().getLatitude()+","+marker.getPosition().getLongitude());
+                        Intent mapIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                        mapIntent.setPackage("com.google.android.apps.maps");
+                        startActivity(mapIntent);
+                        return false;
+                    }
+                });
 
             }
         });

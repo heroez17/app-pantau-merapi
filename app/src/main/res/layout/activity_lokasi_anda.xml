@@ -54,21 +54,24 @@
         mapbox:mapbox_cameraZoomMax="19"
         mapbox:mapbox_styleUrl="@string/mapbox_style_mapbox_streets"
         mapbox:mapbox_uiRotateGestures="false"
+        mapbox:mapbox_uiTiltGestures="false"
+        mapbox:mapbox_uiCompass="true"
         mapbox:mapbox_uiLogo="true" />
 
     <android.support.v7.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        app:cardElevation="0dp"
         android:padding="10dp"
-        app:cardCornerRadius="5dp"
         app:cardBackgroundColor="@color/colorHeaderHome"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" >
+        app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -80,17 +83,17 @@
                 android:id="@+id/textView9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:gravity="center"
-                android:textColor="@android:color/white"
                 android:layout_marginBottom="5dp"
-                android:text="@string/info_lokasi" />
+                android:gravity="center"
+                android:text="@string/info_lokasi"
+                android:textColor="@android:color/white"
+                android:textSize="15sp" />
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:cardElevation="0dp"
-                app:cardCornerRadius="5dp">
+                app:cardCornerRadius="5dp"
+                app:cardElevation="0dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -101,10 +104,10 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp">
 
                         <ImageView
                             android:id="@+id/imageView6"
@@ -124,9 +127,9 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:orientation="horizontal"
                         android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:orientation="horizontal">
+                        android:paddingRight="10dp">
 
                         <ImageView
                             android:id="@+id/imageView7"
@@ -148,5 +151,18 @@
 
         </LinearLayout>
     </android.support.v7.widget.CardView>
+
+    <ImageView
+        android:id="@+id/btn_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/cardView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.975"
+        app:layout_constraintStart_toStartOf="parent"
+        mapbox:srcCompat="@drawable/ic_street_icon" />
 
 </android.support.constraint.ConstraintLayout>

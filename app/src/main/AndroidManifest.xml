@@ -40,7 +40,8 @@
         <activity android:name=".PosPengamatan" />
         <activity android:name=".PosPengungsi" />
         <activity android:name=".AktivitasMerapi" />
-        <activity android:name=".MediaCenter"></activity>
+        <activity android:name=".MediaCenter" />
+        <activity android:name=".ZonaKrb"></activity>
     </application>
 
 </manifest>
